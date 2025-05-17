@@ -173,6 +173,16 @@ app.get('/api/recipes/filter/:alphabet', (req, res) => {
   res.json(filtered);
 });
 
+app.get('/api/recipes/id/:id', (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const recipe = recipes.find(r => r.id === id);
+  if (recipe) {
+    res.json(recipe);
+  } else {
+    res.status(404).json({ error: 'Recipe not found' });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Malaysian Foods API listening at http://localhost:3001/api/recipes`);
 });
