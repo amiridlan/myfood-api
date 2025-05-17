@@ -1,6 +1,7 @@
 # Malaysian Foods API
 
 This is a simple Node.js Express API that provides information about Malaysian foods.
+URL: https://myfood-api.onrender.com/api/recipes
 
 ## Features
 
