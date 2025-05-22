@@ -1,6 +1,7 @@
-const { send } = require('micro');
 const cors = require('cors');
 const express = require('express');
+const serverless = require('serverless-http');
+
 const app = express();
 
 app.use(cors());
@@ -178,5 +179,4 @@ app.get('/api/recipes/id/:id', (req, res) => {
   }
 });
 
-// Export as serverless function handler
-module.exports = app;
+module.exports.handler = serverless(app);
