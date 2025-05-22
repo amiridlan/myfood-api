@@ -1,7 +1,6 @@
+const { send } = require('micro');
 const cors = require('cors');
 const express = require('express');
-const serverless = require('serverless-http');
-
 const app = express();
 
 app.use(cors());
@@ -179,4 +178,12 @@ app.get('/api/recipes/id/:id', (req, res) => {
   }
 });
 
-module.exports.handler = serverless(app);
+const PORT = process.env.PORT || 3000;
+
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running locally on http://localhost:${PORT}/api/recipes`);
+  });
+}
+
+module.exports = app;
