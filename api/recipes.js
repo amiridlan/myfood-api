@@ -1,8 +1,7 @@
-
-const express = require('express');
+const { send } = require('micro');
 const cors = require('cors');
+const express = require('express');
 const app = express();
-const port = process.env.PORT || 3001;
 
 app.use(cors());
 
@@ -132,12 +131,11 @@ const recipes = [
   },
 ];
 
-// endpoint URL
+// Define routes
 app.get('/api/recipes', (req, res) => {
   res.json(recipes);
 });
 
-// Search recipes by ingredient
 app.get('/api/recipes/ingredient/:ingredient', (req, res) => {
   const ingredient = req.params.ingredient.toLowerCase();
   const filtered = recipes.filter(recipe =>
@@ -146,7 +144,6 @@ app.get('/api/recipes/ingredient/:ingredient', (req, res) => {
   res.json(filtered);
 });
 
-// Search recipes by name
 app.get('/api/recipes/name/:name', (req, res) => {
   const name = req.params.name.toLowerCase();
   const filtered = recipes.filter(recipe =>
@@ -155,7 +152,6 @@ app.get('/api/recipes/name/:name', (req, res) => {
   res.json(filtered);
 });
 
-// Search recipes by origin
 app.get('/api/recipes/origin/:origin', (req, res) => {
   const origin = req.params.origin.toLowerCase();
   const filtered = recipes.filter(recipe =>
@@ -164,7 +160,6 @@ app.get('/api/recipes/origin/:origin', (req, res) => {
   res.json(filtered);
 });
 
-// Filter recipes by first alphabet of the name
 app.get('/api/recipes/filter/:alphabet', (req, res) => {
   const alphabet = req.params.alphabet.toLowerCase();
   const filtered = recipes.filter(recipe =>
@@ -183,7 +178,5 @@ app.get('/api/recipes/id/:id', (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Malaysian Foods API listening at http://localhost:3001/api/recipes`);
-});
-
+// Export as serverless function handler
+module.exports = app;
