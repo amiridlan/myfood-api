@@ -2,7 +2,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "micro": "^10.0.1"
+    "micro": "^10.0.1",
+    "serverless-http": "^3.2.0"
   },
   "scripts": {
     "start": "node index.js"
